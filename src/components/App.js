@@ -48,10 +48,10 @@ export const App = () => {
   };
 
   const getFilteredContacts = () => {
-    const filterContactsList = contacts.filter(contact => {
+    return contacts.filter(contact => {
       return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
-    return filterContactsList;
+    // return filterContactsList;
   };
   return (
     <section>
