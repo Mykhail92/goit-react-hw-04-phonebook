@@ -29,14 +29,16 @@ export const App = () => {
   const addContacts = e => {
     const id = nanoid();
     const name = e.name;
+
     const number = e.number;
     const contactsLists = [...contacts];
 
-    if (contacts.some(e => e.name === name)) {
-      alert(`${name} is already in contacts!`);
+    if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
+      alert(`${name} is already in contacts.`);
     } else {
       contactsLists.push({ id, name, number });
     }
+
     setContacts(contactsLists);
   };
 
@@ -48,10 +50,10 @@ export const App = () => {
   };
 
   const getFilteredContacts = () => {
-    return contacts.filter(contact => {
+    const filterContactsList = contacts.filter(contact => {
       return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
-    // return filterContactsList;
+    return filterContactsList;
   };
   return (
     <section>
