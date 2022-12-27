@@ -22,7 +22,7 @@ export const App = () => {
         contacts: JSON.parse(savedContacts),
       });
     } else {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
   }, [contacts]);
 
