@@ -1,7 +1,6 @@
 import { ButtonList } from './ContactList.styled';
 
 export const ContactList = ({ items, onDelete }) => {
-  console.log(items);
   return (
     <ul>
       {items.map((item, id) => (

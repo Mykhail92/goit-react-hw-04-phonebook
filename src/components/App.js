@@ -16,14 +16,18 @@ export const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    const savedContacts = localStorage.getItem('contacts');
-    if (savedContacts !== null) {
-      setContacts({
-        contacts: JSON.parse(savedContacts),
-      });
-    } else {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
+    try {
+      const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+      if (savedContacts) {
+        setContacts(savedContacts);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const addContacts = e => {
@@ -53,6 +57,7 @@ export const App = () => {
     const filterContactsList = contacts.filter(contact => {
       return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
+
     return filterContactsList;
   };
   return (
